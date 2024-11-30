@@ -11,7 +11,30 @@
 # This command does not return a value. It performs an action on the system by upgrading packages.
 dnf -y upgrade
 
+# Disable SELinux enforcement.
+#
+# This command sets SELinux to permissive mode, which effectively disables its enforcement.
+# It is often used in environments where SELinux policies interfere with application functionality.
+#
+# Parameters:
+# This command does not take any parameters.
+#
+# Return Value:
+# This command does not return a value. It performs an action on the system by changing the SELinux mode.
 setenforce 0
+
+# Modify SELinux configuration file to disable SELinux permanently.
+#
+# This command updates the SELinux configuration file to ensure that SELinux is disabled
+# after a system reboot. It replaces the 'SELINUX=enforcing' line with 'SELINUX=disabled'.
+#
+# Parameters:
+# - `-i --follow-symlinks`: Edit files in place and follow symlinks.
+# - `'s/SELINUX=enforcing/SELINUX=disabled/g'`: The sed expression to perform the substitution.
+# - `/etc/sysconfig/selinux`: The file to be edited.
+#
+# Return Value:
+# This command does not return a value. It performs an action on the system by modifying a configuration file.
 sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
 
 modprobe br_netfilter
