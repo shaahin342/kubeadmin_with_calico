@@ -1,0 +1,12 @@
+# Upgrade all installed packages to the latest version available.
+#
+# This command performs a system-wide upgrade of all installed packages using the DNF package manager.
+# It ensures that all packages are updated to their latest versions, which may include security patches,
+# bug fixes, and new features.
+#
+# Parameters:
+# - `-y`: Automatically answer "yes" to all prompts and run non-interactively.
+#
+# Return Value:
+# This command does not return a value. It performs an action on the system by upgrading packages.
+dnf -y upgrade
