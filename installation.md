@@ -95,8 +95,26 @@ https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart#overv
 
 kubeadm init --pod-network-cidr 192.168.0.0/16
 
-kubeadm join 94.237.41.193:6443 --token 4xrp9o.v345aic7zc1bj8ba 
---discovery-token-ca-cert-hash sha256:b2e459930f030787654489ba7ccbc701c29b3b60e0aa4998706fe0052de8794c
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 192.168.16.146:6443 --token i9y52i.qzkqav9wsouv06i2 \
+        --discovery-token-ca-cert-hash sha256:9346350519c09f782d1ce8a04f260853b66d78923c16bb44f3a2ba9622d9eeae
+[root@kubemaster01 shaahin]#
+
 
 mkdir -p $HOME/.kube
 cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
