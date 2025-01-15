@@ -1,0 +1,20 @@
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y docker.io
+
+ mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 192.168.152.129:6443 --token oboajq.0yn1x6ci3a0yea5h \
+        --discovery-token-ca-cert-hash sha256:cdf0cca040865ecc435b08c4b69ee4dfc528fc7021ddadbf8211c54b8d9fd3b5

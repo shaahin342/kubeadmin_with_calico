@@ -63,6 +63,7 @@ swapoff -a
 dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
 
 yum install containerd
+rm -f /etc/containerd/config.toml
 
 dnf install docker-ce --nobest -y
 
@@ -75,7 +76,7 @@ echo '{
 
 systemctl restart docker
 
-cat < /etc/yum.repos.d/kubernetes.repo
+cat > /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
 baseurl=https://pkgs.k8s.io/core:/stable:/v1.31/rpm/
@@ -99,6 +100,8 @@ firewall-cmd --zone=public --permanent --add-rich-rule 'rule family=ipv4 source 
 firewall-cmd --zone=public --permanent --add-rich-rule 'rule family=ipv4 source address=172.17.0.0/16 accept'
 
 firewall-cmd --reload
+
+#### SNAPSHOT
 
 https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart#overview
 
@@ -143,3 +146,9 @@ kubeadm join 94.237.41.193:6443 --token 4xrp9o.v345aic7zc1bj8ba
 
 kubectl get nodes
 
+
+kubeadm init --control-plane-endpoint 192.168.16.146 \
+--pod-network-cidr 192.168.0.0/16 \
+--apiserver-advertise-address=192.168.16.146 \
+--service-cidr 192.168.0.0/16 \
+--upload-certs
