@@ -103,9 +103,7 @@ firewall-cmd --reload
 
 #### SNAPSHOT
 
-https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart#overview
-
-kubeadm init --pod-network-cidr 192.168.0.0/16
+https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart#
 
 To start using your cluster, you need to run the following as a regular user:
 
