@@ -63,7 +63,6 @@ swapoff -a
 dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
 
 yum install containerd
-rm -f /etc/containerd/config.toml
 
 dnf install docker-ce --nobest -y
 

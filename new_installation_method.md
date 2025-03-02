@@ -30,7 +30,7 @@ cat /etc/containerd/config.toml | grep -i 'SystemdCgroup' -B 50
 
 sudo systemctl restart containerd
 
-sudo kubeadm init --apiserver-advertise-address X.X.X.X --pod-network-cider "10.244.0.0" --upload-cert
+sudo kubeadm init --apiserver-advertise-address 192.168.43.138 --pod-network-cidr "10.244.0.0/16" --upload-certs
 
 Your Kubernetes control-plane has initialized successfully!
 To start using your cluster, you need to run the following as a regular user:
