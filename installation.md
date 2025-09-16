@@ -73,6 +73,10 @@ echo '{
   "exec-opts": ["native.cgroupdriver=systemd"]
 }' > /etc/docker/daemon.json
 
+rm /etc/comtainerd/config.tomb
+
+systemctl restart containerd
+
 systemctl restart docker
 
 cat > /etc/yum.repos.d/kubernetes.repo
