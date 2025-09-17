@@ -2,6 +2,9 @@
 sudo setenforce 0
 sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
+swapoff -a
+systemctl disable --now firewalld
+
 # This overwrites any existing configuration in /etc/yum.repos.d/kubernetes.repo
 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
@@ -22,15 +25,11 @@ sudo dnf install -y containerd
 
 ps -p 1
 
-mkdir -p /etc/containerd/config.toml
-
-containerd config default | sed 's/SystemdCgroup = false/SystemdCgroup = true/' | tee /etc/containerd/config.toml
-
-cat /etc/containerd/config.toml | grep -i 'SystemdCgroup' -B 50
+rm -f /etc/containerd/config.toml
 
 sudo systemctl restart containerd
 
-sudo kubeadm init --apiserver-advertise-address 192.168.43.138 --pod-network-cidr "10.244.0.0/16" --upload-certs
+sudo kubeadm init --apiserver-advertise-address 192.168.43.138 --pod-network-cidr "192.168.0.0/16" --upload-certs
 
 Your Kubernetes control-plane has initialized successfully!
 To start using your cluster, you need to run the following as a regular user:
