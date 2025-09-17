@@ -71,9 +71,9 @@ Execute these on **all 5 nodes**.
    192.168.43.165 k8s-master-1
    192.168.43.169 k8s-master-2
    192.168.43.170 k8s-master-3
-   192.168.1.171 k8s-worker-1
-   192.168.1.172 k8s-worker-2
-   192.168.1.173 vip-k8s-master
+   192.168.43.171 k8s-worker-1
+   192.168.43.172 k8s-worker-2
+   192.168.43.173 vip-k8s-master
    EOF
    ```
 
