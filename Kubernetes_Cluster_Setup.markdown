@@ -10,12 +10,12 @@ This guide provides step-by-step instructions to set up a high-availability Kube
 - **Network Setup**:
   - All nodes on the same network (e.g., `192.168.1.0/24`).
   - Example IPs/Hostnames:
-    - Master1: `k8s-master-1` (192.168.1.40)
-    - Master2: `k8s-master-2` (192.168.1.41)
-    - Master3: `k8s-master-3` (192.168.1.42)
-    - Worker1: `k8s-worker-1` (192.168.1.43)
-    - Worker2: `k8s-worker-2` (192.168.1.44)
-    - Load Balancer VIP: `vip-k8s-master` (192.168.1.45)
+    - Master1: `k8s-master-1` (192.168.43.165)
+    - Master2: `k8s-master-2` (192.168.43.169)
+    - Master3: `k8s-master-3` (192.168.43.170)
+    - Worker1: `k8s-worker-1` (192.168.43.171)
+    - Worker2: `k8s-worker-2` (192.168.43.172)
+    - Load Balancer VIP: `vip-k8s-master` (192.168.1.173)
   - Firewall ports: 6443 (API server), 2379-2380 (etcd), 10250-10252 (Kubelet), 179 (Calico BGP), 4789 (VXLAN, optional), 30000-32767 (NodePorts).
 - **Access**: SSH as root or sudo user.
 - **System Prep**:
@@ -68,12 +68,12 @@ Execute these on **all 5 nodes**.
 6. **Update /etc/hosts** on all nodes:
    ```bash
    cat <<EOF >> /etc/hosts
-   192.168.1.40 k8s-master-1
-   192.168.1.41 k8s-master-2
-   192.168.1.42 k8s-master-3
-   192.168.1.43 k8s-worker-1
-   192.168.1.44 k8s-worker-2
-   192.168.1.45 vip-k8s-master
+   192.168.43.165 k8s-master-1
+   192.168.43.169 k8s-master-2
+   192.168.43.170 k8s-master-3
+   192.168.1.171 k8s-worker-1
+   192.168.1.172 k8s-worker-2
+   192.168.1.173 vip-k8s-master
    EOF
    ```
 
