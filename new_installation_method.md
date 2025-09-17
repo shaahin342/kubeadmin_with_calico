@@ -26,8 +26,10 @@ sudo dnf install -y containerd
 ps -p 1
 
 rm -f /etc/containerd/config.toml
-
 sudo systemctl restart containerd
+
+systemctl enable --now kubelet.service
+
 
 sudo kubeadm init --apiserver-advertise-address 192.168.43.138 --pod-network-cidr "192.168.0.0/16" --upload-certs
 
