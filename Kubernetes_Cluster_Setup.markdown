@@ -109,7 +109,7 @@ Use a dedicated CentOS 8 VM (IP: 192.168.1.45) for HAProxy + Keepalived.
        timeout server 50000
 
    frontend kubernetes
-       bind 192.168.1.45:6443
+       bind 192.168.43.173:6443
        mode tcp
        default_backend kubernetes-backend
 
@@ -117,9 +117,9 @@ Use a dedicated CentOS 8 VM (IP: 192.168.1.45) for HAProxy + Keepalived.
        mode tcp
        balance roundrobin
        option tcp-check
-       server master1 192.168.1.40:6443 check fall 3 rise 2
-       server master2 192.168.1.41:6443 check fall 3 rise 2
-       server master3 192.168.1.42:6443 check fall 3 rise 2
+       server master1 192.168.43.165:6443 check fall 3 rise 2
+       server master2 192.168.43.169:6443 check fall 3 rise 2
+       server master3 192.168.43.170:6443 check fall 3 rise 2
    EOF
    ```
 
@@ -137,7 +137,7 @@ Use a dedicated CentOS 8 VM (IP: 192.168.1.45) for HAProxy + Keepalived.
            auth_pass 1111
        }
        virtual_ipaddress {
-           192.168.1.45
+           192.168.43.173
        }
    }
    EOF
